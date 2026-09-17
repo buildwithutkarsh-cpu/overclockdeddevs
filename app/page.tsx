@@ -465,12 +465,18 @@ export default function Home() {
                   it happen.
                 </p>
 
-                <a
-                  href="mailto:hello@overclockeddevs.com"
-                  className="button primary reveal delay-3"
-                >
-                  <span>GET IN TOUCH →</span>
-                </a>
+                <div className="collab-actions reveal delay-3">
+                  <a href="/proposal" className="button">
+                    <span>PARTNER PROPOSAL →</span>
+                  </a>
+
+                  <a
+                    href="mailto:hello@overclockeddevs.com"
+                    className="button primary"
+                  >
+                    <span>GET IN TOUCH →</span>
+                  </a>
+                </div>
               </div>
             </div>
 

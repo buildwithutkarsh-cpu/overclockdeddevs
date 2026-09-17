@@ -18,8 +18,10 @@ export default function FinalCTASection() {
         </p>
 
         <div className="p-final-actions p-reveal p-delay-4">
-          {/* Replace with official partnership email */}
-          <a href="mailto:YOUR_EMAIL_HERE" className="p-btn primary">
+          <a
+            href="mailto:hello@overclockeddevs.com"
+            className="p-btn primary"
+          >
             <span>PARTNER WITH OCd →</span>
           </a>
 
@@ -29,7 +31,7 @@ export default function FinalCTASection() {
         </div>
 
         <p className="p-final-note p-reveal p-delay-4">
-          [PARTNERSHIP EMAIL] — reachable once the official address is added.
+          hello@overclockeddevs.com
         </p>
       </div>
 

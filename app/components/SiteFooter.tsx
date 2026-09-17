@@ -35,6 +35,7 @@ export default function SiteFooter() {
               <a href="#events">Events</a>
               <a href="#archive">Archive</a>
               <a href="#impact">Impact</a>
+              <a href="/proposal">Partner Proposal</a>
             </div>
           </div>
 

@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import logo from "../../public/OCd-logo.png";
+import logo from "../../../public/OCd-logo.png";
 
 const LINKS = [
   { href: "#the-idea", label: "THE IDEA" },
   { href: "#the-reach", label: "REACH" },
   { href: "#the-events", label: "EVENTS" },
-  { href: "#partner", label: "PARTNER" },
+  { href: "#p-partner", label: "PARTNER" },
 ];
 
 export default function ProposalNav() {
