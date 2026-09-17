@@ -21,7 +21,7 @@ const body = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: "OCd — OverclockedDevs",
-  description: "OverclockedDevs — BUILD. BREAK. FORK. FIX.",
+  description: "OCd — OverclockedDevs. Build. Break. Fork. Fix.",
 };
 
 export const viewport: Viewport = {
@@ -35,7 +35,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${display.variable} ${heading.variable} ${body.variable}`}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${display.variable} ${heading.variable} ${body.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

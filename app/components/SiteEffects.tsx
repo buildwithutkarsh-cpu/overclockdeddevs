@@ -3,9 +3,8 @@
 import { useEffect } from "react";
 
 /**
- * Ports the vanilla-JS behaviors from the original static site:
- * scroll reveals, hero/sun/orbit parallax and offset smooth scrolling
- * for internal anchor links.
+ * Client-side behaviors for the homepage:
+ * scroll reveals and the hero art parallax on fine pointers.
  */
 export default function SiteEffects() {
   useEffect(() => {
@@ -21,7 +20,7 @@ export default function SiteEffects() {
           }
         });
       },
-      { threshold: 0.12 }
+      { threshold: 0.1 }
     );
 
     document
@@ -42,39 +41,18 @@ export default function SiteEffects() {
     }
 
     /* =======================================================
-       HERO / SUN / ORBIT PARALLAX
+       HERO ART PARALLAX
        ======================================================= */
-    const heroWord = document.querySelector<HTMLElement>(".hero-bg-word");
-    const sun = document.querySelector<HTMLElement>(".sun");
-    const orbit = document.querySelector<HTMLElement>(".collab-orbit");
+    const heroArt = document.querySelector<HTMLElement>(".hero-art-frame");
 
     const finePointer = window.matchMedia("(pointer:fine)");
 
     const onMouseMove = (event: MouseEvent) => {
-      const x = event.clientX / window.innerWidth - 0.5;
-      const y = event.clientY / window.innerHeight - 0.5;
+      const x = (event.clientX / window.innerWidth - 0.5) * 10;
+      const y = (event.clientY / window.innerHeight - 0.5) * 10;
 
-      /* Hero background */
-      if (heroWord) {
-        heroWord.style.transform = `translateY(
-          calc(-50% + ${y * 25}px)
-        )
-        translateX(${x * 25}px)
-        rotate(-90deg)`;
-      }
-
-      /* Falling Sun */
-      if (sun) {
-        sun.style.marginLeft = `${x * 14}px`;
-        sun.style.marginTop = `${y * 14}px`;
-      }
-
-      /* Collaboration orbit */
-      if (orbit) {
-        orbit.style.transform = `translate(
-          ${x * 20}px,
-          ${y * 20}px
-        )`;
+      if (heroArt) {
+        heroArt.style.transform = `rotate(1.2deg) translate(${x}px, ${y}px)`;
       }
     };
 
@@ -82,43 +60,9 @@ export default function SiteEffects() {
       window.addEventListener("mousemove", onMouseMove, { passive: true });
     }
 
-    /* =======================================================
-       INTERNAL LINKS
-       ======================================================= */
-    const onClick = (event: MouseEvent) => {
-      const link = (event.target as HTMLElement).closest("a");
-
-      if (!link) return;
-
-      const targetID = link.getAttribute("href");
-
-      if (!targetID || targetID === "#" || targetID.length < 2) return;
-
-      if (!targetID.startsWith("#")) return;
-
-      const target = document.querySelector(targetID);
-
-      if (!target) return;
-
-      event.preventDefault();
-
-      const offset = 78;
-
-      const position =
-        target.getBoundingClientRect().top + window.scrollY - offset;
-
-      window.scrollTo({
-        top: position,
-        behavior: reduceMotionQuery.matches ? "auto" : "smooth",
-      });
-    };
-
-    document.addEventListener("click", onClick);
-
     return () => {
       revealObserver.disconnect();
       window.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("click", onClick);
     };
   }, []);
 
